@@ -24,11 +24,24 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1871131813');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1580983517');
       });
     }
   </script>
-  
+  <script>
+    //https://stackoverflow.com/questions/61161135/adding-support-for-navigator-mediadevices-getusermedia-to-dart
+          navigator.getUserMedia = function(constraints, success, error){
+              console.log('rewrited navigator.getUserMedia');
+              navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+              .then((mediaStream) => {
+                  success(mediaStream);
+              })
+              .catch((err) => {
+                  error(err);
+              });
+          };
+  </script>
+  <script src="jsQR.js" type="application/javascript"></script>
   <script src="assets/packages/tekartik_js_qr/js/js_qr.js" type="application/javascript"></script>
   <script src="main.dart.js" type="application/javascript"></script>
   
